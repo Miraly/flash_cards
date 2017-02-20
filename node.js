@@ -2,14 +2,22 @@ var inquirer = require("inquirer");
 var fs = require('fs');
 
 function BasicCard(front, back) {
-    this.front = front;
-    this.back = back;
+	if(this instanceof BasicCard) {
+	    this.front = front;
+	    this.back = back;
+	} else {
+		return new BasicCard(front, back);
+	}
 };
 
 function ClozeCard(fullText, clozeText) {
-    this.full = fullText;
-    this.cloze = clozeText;
-    this.partText = fullText.replace(this.cloze, "...");
+	if(this instanceof ClozeCard) {
+	    this.full = fullText;
+	    this.cloze = clozeText;
+	    this.partText = fullText.replace(this.cloze, "...");
+	}  else {
+		return new ClozeCard(fullText, clozeText);
+	}
 };
 // ClozeCard.partText = ClozeCard.full.replace(clozeText, "...");
 
